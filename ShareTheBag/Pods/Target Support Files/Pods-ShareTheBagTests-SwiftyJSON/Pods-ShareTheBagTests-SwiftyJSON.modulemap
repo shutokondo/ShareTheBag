@@ -1,0 +1,6 @@
+framework module SwiftyJSON {
+  umbrella header "Pods-ShareTheBagTests-SwiftyJSON-umbrella.h"
+
+  export *
+  module * { export * }
+}
