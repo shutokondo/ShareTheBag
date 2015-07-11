@@ -28,6 +28,10 @@
 		09D7A1CB1B4A98340078DEE6 /* StockUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1CA1B4A98340078DEE6 /* StockUsers.swift */; };
 		09D7A1CF1B4A9BA50078DEE6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1CE1B4A9BA50078DEE6 /* User.swift */; };
 		09D7A1D11B4A9BF80078DEE6 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1D01B4A9BF80078DEE6 /* CurrentUser.swift */; };
+		09D7A1D31B4D58AC0078DEE6 /* SessionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1D21B4D58AC0078DEE6 /* SessionUser.swift */; };
+		09D7A1D51B4E24CF0078DEE6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */; };
+		09D7A1D71B4FC78C0078DEE6 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */; };
+		09D7A1DB1B4FE1BE0078DEE6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */; };
 		FEA5F52789BA3C11C50B28D6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B999A14EC086F1C841560A79 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -69,6 +73,10 @@
 		09D7A1CA1B4A98340078DEE6 /* StockUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StockUsers.swift; path = ../StockUsers.swift; sourceTree = "<group>"; };
 		09D7A1CE1B4A9BA50078DEE6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		09D7A1D01B4A9BF80078DEE6 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		09D7A1D21B4D58AC0078DEE6 /* SessionUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionUser.swift; sourceTree = "<group>"; };
+		09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		88A4372E041D4F1B00633445 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B999A14EC086F1C841560A79 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD129744FB3DF2EDD1E024C6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +171,8 @@
 		09D7A1A21B4820550078DEE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */,
+				09D7A1D21B4D58AC0078DEE6 /* SessionUser.swift */,
 				09D7A1CA1B4A98340078DEE6 /* StockUsers.swift */,
 				09D7A1CE1B4A9BA50078DEE6 /* User.swift */,
 				09D7A1D01B4A9BF80078DEE6 /* CurrentUser.swift */,
@@ -188,6 +198,8 @@
 				09D7A19E1B4800BB0078DEE6 /* FirstViewController.swift */,
 				09D7A19C1B4800890078DEE6 /* AdditionalViewController.swift */,
 				09D7A17E1B47FDFD0078DEE6 /* ViewController.swift */,
+				09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */,
+				09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -364,7 +376,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D7A1D51B4E24CF0078DEE6 /* SearchViewController.swift in Sources */,
+				09D7A1D71B4FC78C0078DEE6 /* SearchCell.swift in Sources */,
 				09D7A1B01B49330A0078DEE6 /* FollowerTableViewController.swift in Sources */,
+				09D7A1DB1B4FE1BE0078DEE6 /* CameraViewController.swift in Sources */,
 				09D7A19D1B4800890078DEE6 /* AdditionalViewController.swift in Sources */,
 				09D7A17F1B47FDFD0078DEE6 /* ViewController.swift in Sources */,
 				09D7A17D1B47FDFD0078DEE6 /* AppDelegate.swift in Sources */,
@@ -375,6 +390,7 @@
 				09D7A1CF1B4A9BA50078DEE6 /* User.swift in Sources */,
 				09D7A1CB1B4A98340078DEE6 /* StockUsers.swift in Sources */,
 				09D7A1A81B4850110078DEE6 /* CustomCell.swift in Sources */,
+				09D7A1D31B4D58AC0078DEE6 /* SessionUser.swift in Sources */,
 				09D7A19F1B4800BB0078DEE6 /* FirstViewController.swift in Sources */,
 				09D7A1D11B4A9BF80078DEE6 /* CurrentUser.swift in Sources */,
 			);

@@ -1,1 +1,4 @@
-json.error_message @error_message if @error_message
+json.email @user.email
+json.auth_token @user.auth_token
+json.name @user.name
+json.error_message @error_message

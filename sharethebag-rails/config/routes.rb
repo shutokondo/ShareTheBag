@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
 
 
+  get 'sessions/new'
+  get "login" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
+  resources :users
+  resources :sessions
+  get "secret" => "home#secret", :as => "secret"
+    root :to => "home#index"
+
   namespace :api, {format: :json} do
     resources :items, only:[:index, :create]
     resources :users, only:[:create]
+    resources :sessions, only: [:create]
+    get "users" => "users#search"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

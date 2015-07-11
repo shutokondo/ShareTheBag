@@ -11,6 +11,7 @@ import Alamofire
 
 class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
     @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var newAccountButton: UIButton!
     
@@ -37,6 +38,7 @@ class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "tapGesture:")
         self.view.addGestureRecognizer(tapRecognizer)
         userName.delegate = self
+        email.delegate = self
         password.delegate = self
         
         newAccountButton.addTarget(self, action: "tapAction:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -50,11 +52,13 @@ class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
     
     func tapGesture(sender: UITapGestureRecognizer) {
         userName.resignFirstResponder()
+        email.resignFirstResponder()
         password.resignFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         userName.resignFirstResponder()
+        email.resignFirstResponder()
         password.resignFirstResponder()
         return true
     }
@@ -98,15 +102,14 @@ class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
             
             let user = User()
             user.name = userName.text
+            user.email = email.text
+            user.password = password.text
             
-            var callback = { (error: NSError?, json: AnyObject?) -> Void in
-                if error == nil {
-                    var auth_token: String
-                    var result = json as! Dictionary<String, AnyObject>
-                    auth_token = result["auth_token"] as! String
-                    var currentUser = CurrentUser.sharedInstance
-                    currentUser.authToken = auth_token
-                    currentUser.saveAuthToken()
+            var callback = {(params: Dictionary<String, AnyObject>) -> Void in
+              
+                var errorMessage = params["error_message"] as! Array<AnyObject>
+                
+                if errorMessage.isEmpty {
                     self.performSegueWithIdentifier("tapButtonSegue", sender: nil)
                 } else {
                     let alertController = UIAlertController(title: "エラー", message: "User登録が上手くできませんでした", preferredStyle: UIAlertControllerStyle.Alert)
@@ -114,9 +117,10 @@ class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
             }
-            StockUsers.createUser(user, callback: callback)
+            SessionUser.signUp(user, callBackClosure: callback)
         }
     }
+    
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         println("Userログイン")

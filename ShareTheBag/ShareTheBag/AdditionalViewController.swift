@@ -19,6 +19,7 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
     var item: Item!
     var txtActiveField: UITextField? = UITextField()
     var txtActiveView: UITextView? = UITextView()
+    var currentUser = CurrentUser.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +82,7 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
             var params: [String: AnyObject] = [
                 "title": itemName.text,
                 "store": itemStore.text,
-                "description":itemMemo.text
+                "description":itemMemo.text,
             ]
             
             Alamofire.request(.POST, "http://localhost:3000/api/items", parameters: params, encoding: .URL).responseJSON { (request, response, JSON, error) in

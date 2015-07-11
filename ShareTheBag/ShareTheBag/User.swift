@@ -10,5 +10,6 @@ import UIKit
 
 class User: NSObject {
     var name: String = ""
+    var email: AnyObject = ""
     var password: AnyObject = ""
 }

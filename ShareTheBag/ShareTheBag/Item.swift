@@ -12,6 +12,7 @@ class Item: NSObject {
     var title = ""
     var store = ""
     var descript = ""
+    var user_id = ""
     
     
 }

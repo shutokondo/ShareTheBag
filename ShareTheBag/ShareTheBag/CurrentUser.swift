@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrentUser: NSObject {
+class CurrentUser: User {
     
     static let sharedInstance = CurrentUser()
     var authToken: AnyObject?
@@ -16,6 +16,13 @@ class CurrentUser: NSObject {
     func saveAuthToken() {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(authToken, forKey: "authToken")
+        defaults.setObject(name, forKey: "userName")
+        defaults.synchronize()
+    }
+    
+    func removeAuthToken() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("authToken")
         defaults.synchronize()
     }
    

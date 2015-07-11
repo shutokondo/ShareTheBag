@@ -15,10 +15,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mainScroll: UIScrollView!
+    @IBOutlet weak var userName: UILabel!
     
     let backgroundView = UIView()
     let imageView = UIImageView()
     var stockItem = StockItem()
+    let currentUser = CurrentUser.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.imageView.center = CGPoint(x: self.view.center.x, y: 210)
         self.imageView.contentMode = UIViewContentMode.ScaleAspectFill
         
+        self.userName.text = currentUser.name
     }
     
     override func viewDidLayoutSubviews() {
