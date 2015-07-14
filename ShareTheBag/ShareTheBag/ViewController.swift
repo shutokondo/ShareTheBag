@@ -21,6 +21,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     let imageView = UIImageView()
     var stockItem = StockItem()
     let currentUser = CurrentUser.sharedInstance
+    let item = Item.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //collectionViewの個別ページの処理
         backgroundView.frame = self.view.frame
         backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:0.6)
-        
-        self.imageView.frame.size = CGSize(width:200, height:200)
-        self.imageView.center = CGPoint(x: self.view.center.x, y: 210)
-        self.imageView.contentMode = UIViewContentMode.ScaleAspectFill
         
         self.userName.text = currentUser.name
     }
@@ -50,14 +47,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         
         stockItem = StockItem.sharedInstance
-        collectionView.reloadData()
         
         
-        var params: [String: AnyObject] = [
-            "text": "こんでゅーーーーーーー！！"
-        ]
-        
-        Alamofire.request(.GET, "http://localhost:3000/api/items",parameters: params, encoding: .URL)
+        Alamofire.request(.GET, "http://localhost:3000/api/items",parameters: nil, encoding: .URL)
             .responseJSON { (request, response, JSON, error) in
                 println("=========JSON=======")
                 println(JSON)
@@ -72,13 +64,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         myItem.title = item["title"] as! String!
                         myItem.store = item["store"] as! String!
                         myItem.descript = item["description"] as! String!
+                        let urlKey = item["avatar"] as! Dictionary<String, AnyObject>
+                        let urlKey2 = urlKey["avatar"] as! Dictionary<String, AnyObject>
+                        if let imageURL = urlKey2["url"] as? String {
+                           let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                           myItem.image = image
+                        }
                         StockItem.sharedInstance.items.insert(myItem, atIndex: 0)
-                        
-                        self.collectionView.reloadData()
                     }
+                    self.collectionView.reloadData()
                 }
         }
-        
     }
     
     //    func loadDiaries() {
@@ -123,10 +119,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.titleLabel.text = item.title
         cell.storeLabel.text = item.store
         cell.descriptLabel.text = item.descript
+        cell.image.image = item.image
         
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 3
-        cell.image.image = UIImage(named: "pug.png")
         return cell
     }
     
@@ -178,18 +174,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         deleteButton.titleLabel!.font = UIFont(name: "HirakakuProN-W6", size: 20)
         backgroundView.addSubview(deleteButton)
         
+        let imageView = UIImageView()
+        imageView.frame.size = CGSize(width:300, height:200)
+        imageView.center = CGPoint(x: self.view.center.x, y: 210)
+        imageView.contentMode = UIViewContentMode.ScaleToFill
+        imageView.image = item.image
+        backgroundView.addSubview(imageView)
         
-        displayImageView(imageView, indexPath: indexPath)
+        self.collectionView.reloadData()
+
     }
     
     func tapBackgroundView() {
         backgroundView.removeFromSuperview()
-    }
-    
-    //cellImage(アイテムページの画像)
-    func displayImageView(imageView: UIImageView, indexPath: NSIndexPath) {
-        imageView.image = UIImage(named: "pug.png")
-        backgroundView.addSubview(imageView)
     }
     
     //cellView(各アイテムページの背景)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09ACDF211B52A672003D1507 /* Extension+NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACDF201B52A672003D1507 /* Extension+NSData.swift */; };
+		09ACDF231B52D770003D1507 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */; };
 		09D7A17D1B47FDFD0078DEE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A17C1B47FDFD0078DEE6 /* AppDelegate.swift */; };
 		09D7A17F1B47FDFD0078DEE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A17E1B47FDFD0078DEE6 /* ViewController.swift */; };
 		09D7A1821B47FDFD0078DEE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D7A1801B47FDFD0078DEE6 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09ACDF201B52A672003D1507 /* Extension+NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+NSData.swift"; path = "../Extension+NSData.swift"; sourceTree = "<group>"; };
+		09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		09D7A1771B47FDFD0078DEE6 /* ShareTheBag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareTheBag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D7A17B1B47FDFD0078DEE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D7A17C1B47FDFD0078DEE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,7 +136,6 @@
 				09D7A1A21B4820550078DEE6 /* Model */,
 				09D7A17C1B47FDFD0078DEE6 /* AppDelegate.swift */,
 				09D7A1801B47FDFD0078DEE6 /* Main.storyboard */,
-				09D7A1A71B4850110078DEE6 /* CustomCell.swift */,
 				09D7A1831B47FDFD0078DEE6 /* Images.xcassets */,
 				09D7A1851B47FDFD0078DEE6 /* LaunchScreen.xib */,
 				09D7A1C41B4964CF0078DEE6 /* pug.png */,
@@ -171,6 +174,7 @@
 		09D7A1A21B4820550078DEE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				09D7A1A71B4850110078DEE6 /* CustomCell.swift */,
 				09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */,
 				09D7A1D21B4D58AC0078DEE6 /* SessionUser.swift */,
 				09D7A1CA1B4A98340078DEE6 /* StockUsers.swift */,
@@ -192,6 +196,8 @@
 		09D7A1CD1B4A984C0078DEE6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				09ACDF201B52A672003D1507 /* Extension+NSData.swift */,
+				09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */,
 				09D7A1AF1B49330A0078DEE6 /* FollowerTableViewController.swift */,
 				09D7A1AD1B4932E50078DEE6 /* FollowTableViewController.swift */,
 				09D7A1B11B4933550078DEE6 /* FavoriteTableViewController.swift */,
@@ -379,6 +385,7 @@
 				09D7A1D51B4E24CF0078DEE6 /* SearchViewController.swift in Sources */,
 				09D7A1D71B4FC78C0078DEE6 /* SearchCell.swift in Sources */,
 				09D7A1B01B49330A0078DEE6 /* FollowerTableViewController.swift in Sources */,
+				09ACDF231B52D770003D1507 /* Extension+UIImage.swift in Sources */,
 				09D7A1DB1B4FE1BE0078DEE6 /* CameraViewController.swift in Sources */,
 				09D7A19D1B4800890078DEE6 /* AdditionalViewController.swift in Sources */,
 				09D7A17F1B47FDFD0078DEE6 /* ViewController.swift in Sources */,
@@ -386,6 +393,7 @@
 				09D7A1A11B48204A0078DEE6 /* StockItem.swift in Sources */,
 				09D7A1B21B4933550078DEE6 /* FavoriteTableViewController.swift in Sources */,
 				09D7A1AE1B4932E50078DEE6 /* FollowTableViewController.swift in Sources */,
+				09ACDF211B52A672003D1507 /* Extension+NSData.swift in Sources */,
 				09D7A1A41B4820900078DEE6 /* Item.swift in Sources */,
 				09D7A1CF1B4A9BA50078DEE6 /* User.swift in Sources */,
 				09D7A1CB1B4A98340078DEE6 /* StockUsers.swift in Sources */,

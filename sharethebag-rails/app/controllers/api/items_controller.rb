@@ -6,14 +6,14 @@ class Api::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(create_params)
-    unless item.save
+    @item = Item.new(create_params)
+    unless @item.save
       @error_message = item.errors.full_message
     end
   end
 
   private
   def create_params
-    params.permit(:title, :store, :description)
+    params.permit(:title, :store, :description, :avatar)
   end
 end

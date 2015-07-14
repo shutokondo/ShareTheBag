@@ -3,4 +3,5 @@ json.items @items do |item|
   json.store  item.store
   json.description  item.description
   json.user_id  item.user_id
+  json.avatar item.avatar
 end

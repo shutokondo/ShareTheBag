@@ -941,6 +941,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C662FC502413B3AD9B0D3A72 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1056,6 +1057,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9FBF2F206D82EAE21D2DEB2A /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;

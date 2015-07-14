@@ -9,6 +9,10 @@
 import UIKit
 
 class Item: NSObject {
+    
+    static let sharedInstance = Item()
+    
+    var image:UIImage!
     var title = ""
     var store = ""
     var descript = ""

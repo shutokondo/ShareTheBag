@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
+class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var addImage: UIImageView!
     @IBOutlet weak var itemName: UITextField!
     @IBOutlet weak var itemStore: UITextField!
@@ -19,14 +19,17 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
     var item: Item!
     var txtActiveField: UITextField? = UITextField()
     var txtActiveView: UITextView? = UITextView()
-    var currentUser = CurrentUser.sharedInstance
+    let currentUser = CurrentUser.sharedInstance
+    
+    let photoPicker = UIImagePickerController()
+    var currentImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         item = Item()
-        addImage.image = UIImage(named: "pug.png")
+//        addImage.imageEdgeInsets = UIImage(named: "pug.png")
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "tapGesture:")
         self.view.addGestureRecognizer(tapRecognizer)
@@ -35,6 +38,13 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
         itemStore.delegate = self
         itemMemo.delegate = self
         
+        photoPicker.delegate = self
+        
+        setImageView()
+        
+        println("bbbbbbbbbbbbbbbbbbbbb")
+        println(addImage)
+        println("aaaaaaaaaaaaaaaaaaaaa")
     }
     
     override func viewDidLayoutSubviews() {
@@ -64,6 +74,31 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
         
     }
     
+    func setImageView() {
+        addImage.userInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: "openCameraRoll")
+        addImage.addGestureRecognizer(gesture)
+    }
+    
+    //カメラロールから画像選択
+    func openCameraRoll() {
+        self.photoPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(photoPicker, animated: true, completion: nil)
+    }
+    
+    //ライブラリで写真を選択した時にimageに画像が渡される
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        addImage.image = image
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func photoSelectButtonTouchDown(sender: AnyObject) {
+        var imagePickerController = UIImagePickerController()
+        
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePickerController.delegate = self
+    }
+    
     // 閉じる
     func close() {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -77,7 +112,6 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
             self.presentViewController(alertView, animated: true, completion: nil)
         } else {
             
-            //            let stockItem = StockItem.sharedInstance
             
             var params: [String: AnyObject] = [
                 "title": itemName.text,
@@ -85,16 +119,29 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
                 "description":itemMemo.text,
             ]
             
-            Alamofire.request(.POST, "http://localhost:3000/api/items", parameters: params, encoding: .URL).responseJSON { (request, response, JSON, error) in
-                println("=========JSON=======")
+            let httpMethod = Alamofire.Method.POST.rawValue
+            
+            let urlRequest = NSData.urlRequestWithComponents(httpMethod, urlString: "http://localhost:3000/api/items", parameters: params, image: addImage.image!)
+            Alamofire.upload(urlRequest.0, urlRequest.1).responseJSON{ (request, response, JSON, error) in
+                println("=======JSO=======")
                 println(JSON)
-                println("=========error=====")
+                println("=======error=======")
                 println(error)
+                
+//                let urlKey = JSON!["avatar"] as! Dictionary<String, AnyObject>
+//                println(urlKey)
+//                let urlKey2 = urlKey["avatar"] as! Dictionary<String, AnyObject>
+//                if let imageURL = urlKey2["url"] as? String {
+//                    println(imageURL)
+//                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
+//                }
             }
+            
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
     
     //タップした時に閉じる処理
     func tapGesture(sender: UITapGestureRecognizer) {
@@ -155,6 +202,7 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
     func handleKeyboardWillHideNotification(notification: NSNotification) {
         addScroll.contentOffset.y = 0
     }
+    
     
     /*
     // MARK: - Navigation
