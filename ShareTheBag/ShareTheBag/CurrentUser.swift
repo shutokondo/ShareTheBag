@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class CurrentUser: User {
     
     static let sharedInstance = CurrentUser()
     var authToken: AnyObject?
+    var id: Int!
     
     func saveAuthToken() {
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -25,5 +27,16 @@ class CurrentUser: User {
         defaults.removeObjectForKey("authToken")
         defaults.synchronize()
     }
-   
+    
+    func fetchCurrentUser(callBack: () -> Void) {
+        
+        var params: [String: AnyObject] = ["auth_token": self.authToken!]
+        Alamofire.request(.GET, "http://localhost:3000/api/users/fetch_current_user", parameters: params, encoding: .URL).responseJSON { (request, response, JSON, error) in
+            
+            if error == nil {
+            }
+            callBack()
+        }
+    }
+
 }

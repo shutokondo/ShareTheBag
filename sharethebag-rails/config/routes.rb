@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :create]
     resources :users, only:[:create]
     resources :sessions, only: [:create]
-    get "users" => "users#search"
+    get "users"                          => "users#search"
+    get "items/fetch_current_user_items" => "items#fetch_current_user_items"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

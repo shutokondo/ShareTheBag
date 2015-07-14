@@ -16,8 +16,16 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def fetch_current_user
+    @user = User.by_auth_token(auth_token_params[:authToken])
+  end
+
   private
   def create_params
     params.permit(:name, :email, :password)
+  end
+
+  def auth_token_params
+    params.permit(:auth_token)
   end
 end

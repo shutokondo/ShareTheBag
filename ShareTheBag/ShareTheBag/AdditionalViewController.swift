@@ -117,6 +117,7 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
                 "title": itemName.text,
                 "store": itemStore.text,
                 "description":itemMemo.text,
+                "user_id": currentUser.id,
             ]
             
             let httpMethod = Alamofire.Method.POST.rawValue

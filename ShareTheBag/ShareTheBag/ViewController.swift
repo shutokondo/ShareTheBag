@@ -19,9 +19,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     let backgroundView = UIView()
     let imageView = UIImageView()
-    var stockItem = StockItem()
+    var stockItem = StockItem.sharedInstance
     let currentUser = CurrentUser.sharedInstance
     let item = Item.sharedInstance
+    var items:Array<Item> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +42,32 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         mainScroll.contentSize = CGSize(width: 375, height: self.view.frame.size.height + self.collectionView.frame.size.height)
     }
     
-    // マイページの追加ボタン
+   
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.Plain, target: self, action: "tappedAddButton")
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         
-        stockItem = StockItem.sharedInstance
+//        let stockItem = StockItem.sharedInstance
+        
+        //HTTP通信いつ終わるかわかんないから終わったタイミング（配列を追加したタイミング）でreloadしたい
+        let callBack = { () -> Void in
+            self.items = StockItem.sharedInstance.items
+            println("pppppppppppppppppppppppppp")
+            println(self.items)
+            self.collectionView.reloadData()
+        }
+        
+        fetchItems(callBack)
+    }
+    
+    func fetchItems(callBack: () -> Void) {
+        
+        var params: [String: AnyObject] = [
+            "authToken": currentUser.authToken!
+        ]
         
         
-        Alamofire.request(.GET, "http://localhost:3000/api/items",parameters: nil, encoding: .URL)
+        Alamofire.request(.GET, "http://localhost:3000/api/items/fetch_current_user_items",parameters: params, encoding: .URL)
             .responseJSON { (request, response, JSON, error) in
                 println("=========JSON=======")
                 println(JSON)
@@ -67,59 +85,39 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         let urlKey = item["avatar"] as! Dictionary<String, AnyObject>
                         let urlKey2 = urlKey["avatar"] as! Dictionary<String, AnyObject>
                         if let imageURL = urlKey2["url"] as? String {
-                           let image = UIImage.convertToUIImageFromImagePass(imageURL)
-                           myItem.image = image
+                            let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                            myItem.image = image
                         }
                         StockItem.sharedInstance.items.insert(myItem, atIndex: 0)
+                        println("aaaaaaaaaaaaaaaa")
+                        println(StockItem.sharedInstance.items)
                     }
-                    self.collectionView.reloadData()
                 }
+                callBack()
         }
+
     }
-    
-    //    func loadDiaries() {
-    //        let url = NSURL(string: "http://localhost:4000/diaries.json")
-    //        var request = NSMutableURLRequest(URL: url!)
-    //
-    //        request.HTTPMethod = "GET"
-    //
-    //        var task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
-    //
-    //            if (error == nil) {
-    //                self.stockItem.items.removeAll(keepCapacity: false)
-    //                var diaries = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! Array<Dictionary<String, AnyObject>>
-    //
-    //                for diaryInfo in diaries {
-    //                    let diary = Diary(attributes: diaryInfo)
-    //                    self.diaries.append(diary)
-    //                }
-    //                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-    //                    self.tableView.reloadData()
-    //                })
-    //            } else {
-    //                // when error
-    //            }
-    //        })
-    //        task.resume()
-    //    }
+
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if stockItem.items.count == 0 {
-            println("まだアイテムはありません")
-            return 0
-        } else {
-            return stockItem.items.count
-        }
+//        if items.count == 0 {
+//            println("まだアイテムはありません")
+//            return 0
+//        } else {
+//            return items.count
+//        }
+        return items.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CustomCell
         
-        let item = stockItem.items[indexPath.item]
+        let item = items[indexPath.item]
         cell.titleLabel.text = item.title
         cell.storeLabel.text = item.store
         cell.descriptLabel.text = item.descript
         cell.image.image = item.image
+        println(cell.image.image)
         
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 3

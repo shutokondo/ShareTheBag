@@ -43,10 +43,11 @@ class SessionUser: NSObject {
                     returnParams["error_message"] = []
                     returnParams["auth_token"] = JSON!["auth_token"]
                     returnParams["email"] = JSON!["email"]
-                    
+                                       
                     let currentUser = CurrentUser.sharedInstance
                     currentUser.authToken = JSON!["auth_token"]
                     currentUser.name = JSON!["name"] as! String
+                    currentUser.id = JSON!["id"] as! Int
                     currentUser.saveAuthToken()
                     
                     
