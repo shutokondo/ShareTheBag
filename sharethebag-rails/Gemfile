@@ -46,4 +46,4 @@ end
 gem 'pry-rails'
 gem 'sorcery'
 gem 'carrierwave'
-
+gem 'acts_as_follower', '~> 0.2.0'

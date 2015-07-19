@@ -38,5 +38,25 @@ class CurrentUser: User {
             callBack()
         }
     }
-
+    
+    
+    
+//    class func editMyBagImage(image: UIImageView!) {
+//        
+////        var params: [String: AnyObject] = [
+////            "bagImage": image.image
+////        ]
+//        
+//        let httpMethod = Alamofire.Method.POST.rawValue
+//        
+//        
+//        let urlRequest = NSData.urlRequestWithComponents(httpMethod, urlString: "http://localhost:3000/api/users/add_bag_image", parameters: nil, image: image.image!)
+//        Alamofire.upload(urlRequest.0, urlRequest.1).responseJSON{ (request, response, JSON, error) in
+//            println("=======JSON=======")
+//            println(JSON)
+//            println("=======error=======")
+//            println(error)
+//        }
+//    }
+//
 }

@@ -12,10 +12,11 @@ import Alamofire
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    
+   
     var stockUser = StockUsers.userInstance
-    
-    
+    let currentUser = CurrentUser.sharedInstance
+    var currentIndexPath: NSIndexPath!
+       
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,15 +43,30 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as! SearchCell
         let user = stockUser.userArray[indexPath.row]
-        var nameLabel = cell.viewWithTag(2) as! UILabel
-        nameLabel.text = user.name
+        cell.nameLabel.text = user.name
+     
+        
+       
+        cell.followButton.addTarget(self, action: "tapFollowButton:", forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }
 
     func tapGesture(sender: UITapGestureRecognizer) {
         searchBar.resignFirstResponder()
+    }
+    
+    //フォローボタン押した時の処理
+    func tapFollowButton(sender: UIButton) {
+        
+//        var params: [String: AnyObject] = [
+//            
+//            ]
+        
+        Alamofire.request(.POST, "http://localhost:3000/users", parameters: nil, encoding: .URL).responseJSON { (request, response, JSON, error) in
+            
+        }
     }
     
     //キーボードのcancelボタンが押された時のメソッド
@@ -87,7 +103,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                     }
                 }
         }
+        
+        
     }
+
 
 
     

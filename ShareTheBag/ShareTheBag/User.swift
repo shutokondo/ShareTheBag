@@ -12,4 +12,7 @@ class User: NSObject {
     var name: String = ""
     var email: AnyObject = ""
     var password: AnyObject = ""
+    var avatar: UIImage!
+    var bagImage: UIImage!
+    var message: String = ""
 }

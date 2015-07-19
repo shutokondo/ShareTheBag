@@ -122,24 +122,16 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
             
             let httpMethod = Alamofire.Method.POST.rawValue
             
-            let urlRequest = NSData.urlRequestWithComponents(httpMethod, urlString: "http://localhost:3000/api/items", parameters: params, image: addImage.image!)
+            let urlRequest = NSData.urlRequestImageWithComponents(httpMethod, urlString: "http://localhost:3000/api/items", parameters: params, image: addImage.image!)
             Alamofire.upload(urlRequest.0, urlRequest.1).responseJSON{ (request, response, JSON, error) in
                 println("=======JSO=======")
                 println(JSON)
                 println("=======error=======")
                 println(error)
                 
-//                let urlKey = JSON!["avatar"] as! Dictionary<String, AnyObject>
-//                println(urlKey)
-//                let urlKey2 = urlKey["avatar"] as! Dictionary<String, AnyObject>
-//                if let imageURL = urlKey2["url"] as? String {
-//                    println(imageURL)
-//                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
-//                }
+                //ここに書くことでpostの通信が終わった後にこのメソッドが走る
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
-            
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -158,11 +150,6 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
         itemStore.resignFirstResponder()
         return true
     }
-    
-    //    func textFieldShouldReturn(textField: UITextView) -> Bool {
-    //        itemMemo.resignFirsstResponder()
-    //        return true
-    //    }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         txtActiveField = textField
@@ -214,5 +201,4 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
     // Pass the selected object to the new view controller.
     }
     */
-    
 }

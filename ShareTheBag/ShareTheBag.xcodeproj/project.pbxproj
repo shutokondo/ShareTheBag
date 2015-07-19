@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094829EA1B59157C0090365D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094829E91B59157C0090365D /* ProfileViewController.swift */; };
 		09ACDF211B52A672003D1507 /* Extension+NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACDF201B52A672003D1507 /* Extension+NSData.swift */; };
 		09ACDF231B52D770003D1507 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */; };
 		09D7A17D1B47FDFD0078DEE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A17C1B47FDFD0078DEE6 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		094829E91B59157C0090365D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		09ACDF201B52A672003D1507 /* Extension+NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+NSData.swift"; path = "../Extension+NSData.swift"; sourceTree = "<group>"; };
 		09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		09D7A1771B47FDFD0078DEE6 /* ShareTheBag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareTheBag.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		094829EB1B5A8C460090365D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */,
+				09D7A1A71B4850110078DEE6 /* CustomCell.swift */,
+				09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */,
+				09ACDF201B52A672003D1507 /* Extension+NSData.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		09D7A16E1B47FDFD0078DEE6 = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +144,9 @@
 		09D7A1791B47FDFD0078DEE6 /* ShareTheBag */ = {
 			isa = PBXGroup;
 			children = (
-				09D7A1CD1B4A984C0078DEE6 /* ViewController */,
 				09D7A1CC1B4A98400078DEE6 /* Controller */,
+				09D7A1CD1B4A984C0078DEE6 /* ViewController */,
+				094829EB1B5A8C460090365D /* View */,
 				09D7A1A21B4820550078DEE6 /* Model */,
 				09D7A17C1B47FDFD0078DEE6 /* AppDelegate.swift */,
 				09D7A1801B47FDFD0078DEE6 /* Main.storyboard */,
@@ -174,8 +188,6 @@
 		09D7A1A21B4820550078DEE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				09D7A1A71B4850110078DEE6 /* CustomCell.swift */,
-				09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */,
 				09D7A1D21B4D58AC0078DEE6 /* SessionUser.swift */,
 				09D7A1CA1B4A98340078DEE6 /* StockUsers.swift */,
 				09D7A1CE1B4A9BA50078DEE6 /* User.swift */,
@@ -196,8 +208,6 @@
 		09D7A1CD1B4A984C0078DEE6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				09ACDF201B52A672003D1507 /* Extension+NSData.swift */,
-				09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */,
 				09D7A1AF1B49330A0078DEE6 /* FollowerTableViewController.swift */,
 				09D7A1AD1B4932E50078DEE6 /* FollowTableViewController.swift */,
 				09D7A1B11B4933550078DEE6 /* FavoriteTableViewController.swift */,
@@ -206,6 +216,7 @@
 				09D7A17E1B47FDFD0078DEE6 /* ViewController.swift */,
 				09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */,
 				09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */,
+				094829E91B59157C0090365D /* ProfileViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -384,6 +395,7 @@
 			files = (
 				09D7A1D51B4E24CF0078DEE6 /* SearchViewController.swift in Sources */,
 				09D7A1D71B4FC78C0078DEE6 /* SearchCell.swift in Sources */,
+				094829EA1B59157C0090365D /* ProfileViewController.swift in Sources */,
 				09D7A1B01B49330A0078DEE6 /* FollowerTableViewController.swift in Sources */,
 				09ACDF231B52D770003D1507 /* Extension+UIImage.swift in Sources */,
 				09D7A1DB1B4FE1BE0078DEE6 /* CameraViewController.swift in Sources */,

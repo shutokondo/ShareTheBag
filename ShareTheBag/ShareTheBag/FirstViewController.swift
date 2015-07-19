@@ -31,7 +31,6 @@ class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
             loginView.center.y = 500
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
-            println(loginView)
         }
         
         
@@ -87,7 +86,6 @@ class FirstViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFie
     //        }
     
     func tapAction(sender: UIButton) {
-        println("jfhshfslhflsjhhfjlsjlfhjlshjf")
         
         
         if count(userName.text) == 0  {

@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 
   namespace :api, {format: :json} do
     resources :items, only:[:index, :create]
-    resources :users, only:[:create]
+    resources :users, only:[:create, :update, :show]
     resources :sessions, only: [:create]
     get "users"                          => "users#search"
     get "items/fetch_current_user_items" => "items#fetch_current_user_items"
+    post "users/add_bagImage"            => "users#add_bag_image"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

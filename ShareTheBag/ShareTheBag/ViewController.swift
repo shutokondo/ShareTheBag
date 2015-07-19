@@ -9,16 +9,21 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var followerButton: UIButton!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mainScroll: UIScrollView!
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var bagImage: UIImageView!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     
     let backgroundView = UIView()
     let imageView = UIImageView()
+    let photoPicker = UIImagePickerController()
     var stockItem = StockItem.sharedInstance
     let currentUser = CurrentUser.sharedInstance
     let item = Item.sharedInstance
@@ -29,13 +34,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         // Do any additional setup after loading the view, typically from a nib.
         collectionView.delegate = self
         collectionView.dataSource = self
+        photoPicker.delegate = self
         
         
         //collectionViewの個別ページの処理
         backgroundView.frame = self.view.frame
         backgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:0.6)
         
+        profileButton.layer.borderWidth = 1.0
+        profileButton.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 0.5).CGColor
+        profileButton.layer.cornerRadius = 10.0
+        
         self.userName.text = currentUser.name
+        
+//        setImageView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,18 +59,86 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "追加", style: UIBarButtonItemStyle.Plain, target: self, action: "tappedAddButton")
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
         
-//        let stockItem = StockItem.sharedInstance
+//        let notificationCenter = NSNotificationCenter.defaultCenter()
+//        notificationCenter.addObserver(self, selector: " willShowKeyBoard", name: UIKeyboardWillShowNotification, object: nil)
+
         
         //HTTP通信いつ終わるかわかんないから終わったタイミング（配列を追加したタイミング）でreloadしたい
         let callBack = { () -> Void in
             self.items = StockItem.sharedInstance.items
-            println("pppppppppppppppppppppppppp")
-            println(self.items)
             self.collectionView.reloadData()
         }
         
         fetchItems(callBack)
+        
+        fetchUserInfo()
+        
+        
+        println("呼ばれたああああああああああああああああ")
+        
     }
+
+    
+//    func setImageView() {
+//        bagImage.userInteractionEnabled = true
+//        let gesture = UITapGestureRecognizer(target: self, action: "openCameraRoll")
+//        bagImage.addGestureRecognizer(gesture)
+//    }
+//    
+//    
+//    //カメラロールから画像選択
+//    func openCameraRoll() {
+//        self.photoPicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        self.presentViewController(photoPicker, animated: true, completion: nil)
+//    }
+//    
+//    //ライブラリで写真を選択した時にimageに画像が渡される
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+//        bagImage.image = image
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
+//    
+//    func photoSelectButtonTouchDown(sender: AnyObject) {
+//        var imagePickerController = UIImagePickerController()
+//        
+//        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//        imagePickerController.delegate = self
+//    }
+    
+    
+    func fetchUserInfo() {
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/users/\(currentUser.id)", parameters: nil, encoding: .URL).responseJSON { (request, response, JSON, error) in
+            println("get yobaretayo")
+            println("======JSON=====")
+            println(JSON)
+//            println("=====error=====")
+//            println(error)
+            
+            if error == nil {
+                    let myUser = User()
+                    self.userName.text = JSON!["name"] as! String!
+                    self.message!.text = JSON!["message"] as! String!
+//                    myUser.avatar = JSON!["avatar"] as! UIImage!
+//                    self.bagImage.image = user["bagImage"] as! UIImage!
+                    let urlKey = JSON!["bagImage"] as! Dictionary<String, AnyObject>
+                    let urlKey2 = urlKey["bagImage"] as! Dictionary<String, AnyObject>
+                    if let imageURL = urlKey2["url"] as? String {
+                        let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                        self.bagImage?.image = image
+                    }
+                    let urlAvatarKey = JSON!["avatar"] as! Dictionary<String, AnyObject>
+                    let urlAvatarKey2 = urlAvatarKey["avatar"] as! Dictionary<String, AnyObject>
+                    if let imageURL = urlAvatarKey2["url"] as? String {
+                        let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                        self.profileImage?.image = image
+                    }
+                self.view.reloadInputViews()
+            }
+        }
+    }
+    
+
     
     func fetchItems(callBack: () -> Void) {
         
@@ -89,8 +169,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                             myItem.image = image
                         }
                         StockItem.sharedInstance.items.insert(myItem, atIndex: 0)
-                        println("aaaaaaaaaaaaaaaa")
-                        println(StockItem.sharedInstance.items)
                     }
                 }
                 callBack()
@@ -113,11 +191,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CustomCell
         
         let item = items[indexPath.item]
-        cell.titleLabel.text = item.title
-        cell.storeLabel.text = item.store
-        cell.descriptLabel.text = item.descript
         cell.image.image = item.image
-        println(cell.image.image)
         
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 3
@@ -289,6 +363,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     @IBAction func followerButton(sender: UIButton) {
         self.performSegueWithIdentifier("FollowerSegue", sender: nil)
+    }
+    @IBAction func profileButton(sender: UIButton) {
+        self.performSegueWithIdentifier("profileSegue", sender: nil)
+    }
+    @IBAction func unwindToTop(segue: UIStoryboardSegue) {
+        
     }
     
     
