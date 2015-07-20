@@ -23,7 +23,6 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(id_params[:id])
     @user.update(update_params)
-    binding.pry
   end
 
 
@@ -37,6 +36,10 @@ class Api::UsersController < ApplicationController
 
   def follow
     # user = User.find
+  end
+
+  def profile_info
+    @user = User.find(id_params[:id])
   end
 
   private

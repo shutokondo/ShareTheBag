@@ -109,18 +109,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func fetchUserInfo() {
         
         Alamofire.request(.GET, "http://localhost:3000/api/users/\(currentUser.id)", parameters: nil, encoding: .URL).responseJSON { (request, response, JSON, error) in
-            println("get yobaretayo")
-            println("======JSON=====")
+            println("======GET userInfoJSON=====")
             println(JSON)
-//            println("=====error=====")
-//            println(error)
             
             if error == nil {
                     let myUser = User()
                     self.userName.text = JSON!["name"] as! String!
-                    self.message!.text = JSON!["message"] as! String!
-//                    myUser.avatar = JSON!["avatar"] as! UIImage!
-//                    self.bagImage.image = user["bagImage"] as! UIImage!
+                    self.message.text = JSON!["message"] as! String!
                     let urlKey = JSON!["bagImage"] as! Dictionary<String, AnyObject>
                     let urlKey2 = urlKey["bagImage"] as! Dictionary<String, AnyObject>
                     if let imageURL = urlKey2["url"] as? String {
@@ -133,7 +128,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         let image = UIImage.convertToUIImageFromImagePass(imageURL)
                         self.profileImage?.image = image
                     }
-                self.view.reloadInputViews()
             }
         }
     }
@@ -149,7 +143,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         Alamofire.request(.GET, "http://localhost:3000/api/items/fetch_current_user_items",parameters: params, encoding: .URL)
             .responseJSON { (request, response, JSON, error) in
-                println("=========JSON=======")
+                println("=========GET itemInfoJSON=======")
                 println(JSON)
                 println("=========error=====")
                 println(error)
@@ -178,12 +172,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if items.count == 0 {
-//            println("まだアイテムはありません")
-//            return 0
-//        } else {
-//            return items.count
-//        }
         return items.count
     }
     

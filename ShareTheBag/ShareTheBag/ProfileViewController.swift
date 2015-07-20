@@ -42,6 +42,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "更新", style: UIBarButtonItemStyle.Plain, target: self, action: "edit")
+        
+        getUserInfo()
         }
 
     override func didReceiveMemoryWarning() {
@@ -110,6 +112,39 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
  
         }
         println("post owattayo")
+    }
+    
+    
+    func getUserInfo() {
+        
+//        var params: [String: AnyObject] = [
+//            "id": currentUser.id,
+//        ]
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/users/\(currentUser.id)", parameters: nil, encoding: .URL).responseJSON{ (request, response, JSON, error) in
+            
+            println("======getProfile JSON========")
+            println(JSON)
+            
+            
+            if error == nil {
+                let myUser = User()
+                self.nameField.text = JSON!["name"] as! String!
+                self.message.text = JSON!["message"] as! String!
+                let urlKey = JSON!["bagImage"] as! Dictionary<String, AnyObject>
+                let urlKey2 = urlKey["bagImage"] as! Dictionary<String, AnyObject>
+                if let imageURL = urlKey2["url"] as? String {
+                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                    self.bagImage?.image = image
+                }
+                let urlAvatarKey = JSON!["avatar"] as! Dictionary<String, AnyObject>
+                let urlAvatarKey2 = urlAvatarKey["avatar"] as! Dictionary<String, AnyObject>
+                if let imageURL = urlAvatarKey2["url"] as? String {
+                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                    self.profileImage?.image = image
+                }
+            }
+        }
     }
 
     

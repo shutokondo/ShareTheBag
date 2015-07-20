@@ -46,6 +46,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         var cell = tableView.dequeueReusableCellWithIdentifier("searchCell") as! SearchCell
         let user = stockUser.userArray[indexPath.row]
         cell.nameLabel.text = user.name
+        cell.avatar.image = user.avatar
      
         
        
@@ -84,7 +85,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         
         Alamofire.request(.GET, "http://localhost:3000/api/users",parameters: params, encoding: .URL)
             .responseJSON { (request, response, JSON, error) in
-                println("=========JSON=======")
+                println("=========SEARCH JSON=======")
                 println(JSON)
                 println("=========error=====")
                 println(error)
@@ -97,8 +98,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                         let myUser = User()
                         //userは辞書型なのでUser型の変数myUserに１個ずつ代入していく
                         myUser.name = user["name"] as! String!
+                        let urlAvatarKey = user["avatar"] as! Dictionary<String, AnyObject>
+                        let urlAvatarKey2 = urlAvatarKey["avatar"] as! Dictionary<String, AnyObject>
+                        if let imageURL = urlAvatarKey2["url"] as? String {
+                            let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                            myUser.avatar = image
+                        }
+
                         StockUsers.userInstance.addUser(myUser)
-                        println(myUser)
                         self.tableView.reloadData()
                     }
                 }

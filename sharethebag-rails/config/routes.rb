@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "users"                          => "users#search"
     get "items/fetch_current_user_items" => "items#fetch_current_user_items"
     post "users/add_bagImage"            => "users#add_bag_image"
+    get "users/profile_info"             => "users#profile_info"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
