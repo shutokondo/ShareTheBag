@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		094829EA1B59157C0090365D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094829E91B59157C0090365D /* ProfileViewController.swift */; };
+		094829F01B5D1E420090365D /* StockFollowers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094829EF1B5D1E420090365D /* StockFollowers.swift */; };
+		094829F51B5E3A610090365D /* StockFollows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094829F41B5E3A610090365D /* StockFollows.swift */; };
+		094829F71B5E45F60090365D /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094829F61B5E45F60090365D /* FollowCell.swift */; };
+		094829F91B5E46060090365D /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094829F81B5E46060090365D /* FollowerCell.swift */; };
+		096A58FF1B82E33400573812 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096A58FE1B82E33400573812 /* FollowTableViewController.swift */; };
 		09ACDF211B52A672003D1507 /* Extension+NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACDF201B52A672003D1507 /* Extension+NSData.swift */; };
 		09ACDF231B52D770003D1507 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */; };
 		09D7A17D1B47FDFD0078DEE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A17C1B47FDFD0078DEE6 /* AppDelegate.swift */; };
@@ -21,7 +26,6 @@
 		09D7A1A11B48204A0078DEE6 /* StockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1A01B48204A0078DEE6 /* StockItem.swift */; };
 		09D7A1A41B4820900078DEE6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1A31B4820900078DEE6 /* Item.swift */; };
 		09D7A1A81B4850110078DEE6 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1A71B4850110078DEE6 /* CustomCell.swift */; };
-		09D7A1AE1B4932E50078DEE6 /* FollowTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1AD1B4932E50078DEE6 /* FollowTableViewController.swift */; };
 		09D7A1B01B49330A0078DEE6 /* FollowerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1AF1B49330A0078DEE6 /* FollowerTableViewController.swift */; };
 		09D7A1B21B4933550078DEE6 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1B11B4933550078DEE6 /* FavoriteTableViewController.swift */; };
 		09D7A1BF1B4962FD0078DEE6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D7A1BE1B4962FD0078DEE6 /* FBSDKCoreKit.framework */; };
@@ -35,6 +39,7 @@
 		09D7A1D51B4E24CF0078DEE6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */; };
 		09D7A1D71B4FC78C0078DEE6 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */; };
 		09D7A1DB1B4FE1BE0078DEE6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */; };
+		09DD5B101B603936005FF43F /* BagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DD5B0F1B603936005FF43F /* BagViewController.swift */; };
 		FEA5F52789BA3C11C50B28D6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B999A14EC086F1C841560A79 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -50,6 +55,11 @@
 
 /* Begin PBXFileReference section */
 		094829E91B59157C0090365D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		094829EF1B5D1E420090365D /* StockFollowers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockFollowers.swift; sourceTree = "<group>"; };
+		094829F41B5E3A610090365D /* StockFollows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockFollows.swift; sourceTree = "<group>"; };
+		094829F61B5E45F60090365D /* FollowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
+		094829F81B5E46060090365D /* FollowerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
+		096A58FE1B82E33400573812 /* FollowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowTableViewController.swift; sourceTree = "<group>"; };
 		09ACDF201B52A672003D1507 /* Extension+NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Extension+NSData.swift"; path = "../Extension+NSData.swift"; sourceTree = "<group>"; };
 		09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		09D7A1771B47FDFD0078DEE6 /* ShareTheBag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareTheBag.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,7 +77,6 @@
 		09D7A1A01B48204A0078DEE6 /* StockItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockItem.swift; sourceTree = "<group>"; };
 		09D7A1A31B4820900078DEE6 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		09D7A1A71B4850110078DEE6 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		09D7A1AD1B4932E50078DEE6 /* FollowTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollowTableViewController.swift; path = ../FollowTableViewController.swift; sourceTree = "<group>"; };
 		09D7A1AF1B49330A0078DEE6 /* FollowerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerTableViewController.swift; sourceTree = "<group>"; };
 		09D7A1B11B4933550078DEE6 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		09D7A1B91B4960150078DEE6 /* ShareTheBag-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareTheBag-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -83,6 +92,7 @@
 		09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		09DD5B0F1B603936005FF43F /* BagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagViewController.swift; sourceTree = "<group>"; };
 		88A4372E041D4F1B00633445 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B999A14EC086F1C841560A79 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD129744FB3DF2EDD1E024C6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -115,10 +125,19 @@
 			children = (
 				09D7A1D61B4FC78C0078DEE6 /* SearchCell.swift */,
 				09D7A1A71B4850110078DEE6 /* CustomCell.swift */,
-				09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */,
-				09ACDF201B52A672003D1507 /* Extension+NSData.swift */,
+				094829F61B5E45F60090365D /* FollowCell.swift */,
+				094829F81B5E46060090365D /* FollowerCell.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		094829F21B5D1EBE0090365D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				09ACDF201B52A672003D1507 /* Extension+NSData.swift */,
+				09ACDF221B52D76F003D1507 /* Extension+UIImage.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		09D7A16E1B47FDFD0078DEE6 = {
@@ -144,6 +163,7 @@
 		09D7A1791B47FDFD0078DEE6 /* ShareTheBag */ = {
 			isa = PBXGroup;
 			children = (
+				094829F21B5D1EBE0090365D /* Extension */,
 				09D7A1CC1B4A98400078DEE6 /* Controller */,
 				09D7A1CD1B4A984C0078DEE6 /* ViewController */,
 				094829EB1B5A8C460090365D /* View */,
@@ -188,6 +208,8 @@
 		09D7A1A21B4820550078DEE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				094829F41B5E3A610090365D /* StockFollows.swift */,
+				094829EF1B5D1E420090365D /* StockFollowers.swift */,
 				09D7A1D21B4D58AC0078DEE6 /* SessionUser.swift */,
 				09D7A1CA1B4A98340078DEE6 /* StockUsers.swift */,
 				09D7A1CE1B4A9BA50078DEE6 /* User.swift */,
@@ -209,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				09D7A1AF1B49330A0078DEE6 /* FollowerTableViewController.swift */,
-				09D7A1AD1B4932E50078DEE6 /* FollowTableViewController.swift */,
+				096A58FE1B82E33400573812 /* FollowTableViewController.swift */,
 				09D7A1B11B4933550078DEE6 /* FavoriteTableViewController.swift */,
 				09D7A19E1B4800BB0078DEE6 /* FirstViewController.swift */,
 				09D7A19C1B4800890078DEE6 /* AdditionalViewController.swift */,
@@ -217,6 +239,7 @@
 				09D7A1D41B4E24CF0078DEE6 /* SearchViewController.swift */,
 				09D7A1DA1B4FE1BE0078DEE6 /* CameraViewController.swift */,
 				094829E91B59157C0090365D /* ProfileViewController.swift */,
+				09DD5B0F1B603936005FF43F /* BagViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -402,9 +425,10 @@
 				09D7A19D1B4800890078DEE6 /* AdditionalViewController.swift in Sources */,
 				09D7A17F1B47FDFD0078DEE6 /* ViewController.swift in Sources */,
 				09D7A17D1B47FDFD0078DEE6 /* AppDelegate.swift in Sources */,
+				094829F51B5E3A610090365D /* StockFollows.swift in Sources */,
 				09D7A1A11B48204A0078DEE6 /* StockItem.swift in Sources */,
+				096A58FF1B82E33400573812 /* FollowTableViewController.swift in Sources */,
 				09D7A1B21B4933550078DEE6 /* FavoriteTableViewController.swift in Sources */,
-				09D7A1AE1B4932E50078DEE6 /* FollowTableViewController.swift in Sources */,
 				09ACDF211B52A672003D1507 /* Extension+NSData.swift in Sources */,
 				09D7A1A41B4820900078DEE6 /* Item.swift in Sources */,
 				09D7A1CF1B4A9BA50078DEE6 /* User.swift in Sources */,
@@ -412,7 +436,11 @@
 				09D7A1A81B4850110078DEE6 /* CustomCell.swift in Sources */,
 				09D7A1D31B4D58AC0078DEE6 /* SessionUser.swift in Sources */,
 				09D7A19F1B4800BB0078DEE6 /* FirstViewController.swift in Sources */,
+				094829F01B5D1E420090365D /* StockFollowers.swift in Sources */,
+				094829F71B5E45F60090365D /* FollowCell.swift in Sources */,
 				09D7A1D11B4A9BF80078DEE6 /* CurrentUser.swift in Sources */,
+				09DD5B101B603936005FF43F /* BagViewController.swift in Sources */,
+				094829F91B5E46060090365D /* FollowerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@
 import UIKit
 
 class FavoriteTableViewController: UITableViewController {
+    
+    var currentUser = CurrentUser.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()

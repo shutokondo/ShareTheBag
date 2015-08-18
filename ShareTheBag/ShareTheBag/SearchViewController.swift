@@ -38,7 +38,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(stockUser.userArray.count)
         return stockUser.userArray.count
     }
     
@@ -47,7 +46,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         let user = stockUser.userArray[indexPath.row]
         cell.nameLabel.text = user.name
         cell.avatar.image = user.avatar
+        cell.avatar.layer.cornerRadius = 27
+        cell.avatar.layer.masksToBounds = true
      
+        cell.followButton.tag = indexPath.row
         
        
         cell.followButton.addTarget(self, action: "tapFollowButton:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -61,12 +63,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     //フォローボタン押した時の処理
     func tapFollowButton(sender: UIButton) {
         
-//        var params: [String: AnyObject] = [
-//            
-//            ]
+        var user = stockUser.userArray[sender.tag]
+
+    
+        var params: [String: AnyObject] = [
+            "id": currentUser.id,
+            "name": user.name
+            ]
         
-        Alamofire.request(.POST, "http://localhost:3000/users", parameters: nil, encoding: .URL).responseJSON { (request, response, JSON, error) in
-            
+        Alamofire.request(.POST, "http://localhost:3000/api/users/follow", parameters: params, encoding: .URL).responseJSON { (request, response, JSON, error) in
+            println("=======SEARCHFOLLOW JSON=======")
+            println(JSON)
+            println("=========ERROR================")
+            println(error)
         }
     }
     

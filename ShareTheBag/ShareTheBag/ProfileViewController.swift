@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var bagImage: UIImageView!
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var bagField: UITextField!
     @IBOutlet weak var message: UITextView!
     
     let currentUser = CurrentUser.sharedInstance
@@ -28,10 +29,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         bagImage.tag = 2
         setImageView(bagImage)
         setImageView(profileImage)
-//        setImageView2()
         
         //textFieldの枠線を消す
         nameField.borderStyle = UITextBorderStyle.None
+        bagField.borderStyle = UITextBorderStyle.None
         
         photoPicker.delegate = self
         
@@ -94,7 +95,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         var params: [String: AnyObject] = [
             "name": nameField.text,
             "message": message.text,
-            "id": currentUser.id,
+            "bagName": bagField.text,
+//            "id": currentUser.id,
         ]
         let httpMethod = Alamofire.Method.PUT.rawValue
         
@@ -107,7 +109,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 //            println("=======error=======")
 //            println(error)
             
-             //navigationControllerからnavigationControllerの階層のため２回続
+             //navigationControllerからnavigationControllerの階層のため２回続ける
             self.navigationController!.navigationController?.popViewControllerAnimated(true)
  
         }
@@ -117,10 +119,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func getUserInfo() {
         
-//        var params: [String: AnyObject] = [
-//            "id": currentUser.id,
-//        ]
-        
         Alamofire.request(.GET, "http://localhost:3000/api/users/\(currentUser.id)", parameters: nil, encoding: .URL).responseJSON{ (request, response, JSON, error) in
             
             println("======getProfile JSON========")
@@ -128,21 +126,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
             
             if error == nil {
-                let myUser = User()
                 self.nameField.text = JSON!["name"] as! String!
-                self.message.text = JSON!["message"] as! String!
-                let urlKey = JSON!["bagImage"] as! Dictionary<String, AnyObject>
-                let urlKey2 = urlKey["bagImage"] as! Dictionary<String, AnyObject>
-                if let imageURL = urlKey2["url"] as? String {
-                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
-                    self.bagImage?.image = image
-                }
-                let urlAvatarKey = JSON!["avatar"] as! Dictionary<String, AnyObject>
-                let urlAvatarKey2 = urlAvatarKey["avatar"] as! Dictionary<String, AnyObject>
-                if let imageURL = urlAvatarKey2["url"] as? String {
-                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
-                    self.profileImage?.image = image
-                }
+//                let urlKey = JSON!["bagImage"] as! Dictionary<String, AnyObject>
+//                let urlKey2 = urlKey["bagImage"] as! Dictionary<String, AnyObject>
+//                if let imageURL = urlKey2["url"] as? String {
+//                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
+//                    self.bagImage?.image = image
+//                }
+//                let urlAvatarKey = JSON!["avatar"] as! Dictionary<String, AnyObject>
+//                let urlAvatarKey2 = urlAvatarKey["avatar"] as! Dictionary<String, AnyObject>
+//                if let imageURL = urlAvatarKey2["url"] as? String {
+//                    let image = UIImage.convertToUIImageFromImagePass(imageURL)
+//                    self.profileImage?.image = image
+//                }
             }
         }
     }

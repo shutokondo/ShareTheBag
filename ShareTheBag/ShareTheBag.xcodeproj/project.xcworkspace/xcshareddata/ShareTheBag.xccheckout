@@ -10,6 +10,8 @@
 	<string>ShareTheBag</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>020AE56D9E47FA76EBD87138B458D5B9B22F4FB1</key>
+		<string>github.com:shutokondo/KabanNoNakami.git</string>
 		<key>636B0A7487F16E6CF65288F9D4B1323DAADE08D8</key>
 		<string>github.com:shutokondo/ShareTheBag.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>ShareTheBag/ShareTheBag.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>020AE56D9E47FA76EBD87138B458D5B9B22F4FB1</key>
+		<string>../../../../KabanNoNakami</string>
 		<key>636B0A7487F16E6CF65288F9D4B1323DAADE08D8</key>
 		<string>../../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>636B0A7487F16E6CF65288F9D4B1323DAADE08D8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>020AE56D9E47FA76EBD87138B458D5B9B22F4FB1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>KabanNoNakami</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

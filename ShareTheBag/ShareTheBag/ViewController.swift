@@ -18,7 +18,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var bagImage: UIImageView!
     @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var message: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
     let backgroundView = UIView()
@@ -44,9 +43,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         profileButton.layer.borderWidth = 1.0
         profileButton.layer.borderColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 0.5).CGColor
         profileButton.layer.cornerRadius = 10.0
-        
         self.userName.text = currentUser.name
+        self.profileImage.layer.cornerRadius = 35
+        self.profileImage.layer.masksToBounds = true
         
+        let gesture = UITapGestureRecognizer(target: self, action: "tappedBagImage:")
+        self.bagImage.addGestureRecognizer(gesture)
 //        setImageView()
     }
     
@@ -72,10 +74,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         fetchItems(callBack)
         
         fetchUserInfo()
-        
-        
-        println("呼ばれたああああああああああああああああ")
-        
     }
 
     
@@ -115,7 +113,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             if error == nil {
                     let myUser = User()
                     self.userName.text = JSON!["name"] as! String!
-                    self.message.text = JSON!["message"] as! String!
                     let urlKey = JSON!["bagImage"] as! Dictionary<String, AnyObject>
                     let urlKey2 = urlKey["bagImage"] as! Dictionary<String, AnyObject>
                     if let imageURL = urlKey2["url"] as? String {
@@ -224,6 +221,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         editButton.center = CGPoint(x: 50, y: 42)
         editButton.frame.size = CGSize(width: 100, height: 100)
         editButton.titleLabel!.font = UIFont(name: "HirakakuProN-W6", size: 20)
+        editButton.addTarget(self, action: "tappedEditButton:", forControlEvents: .TouchUpInside)
         backgroundView.addSubview(editButton)
         
         var deleteButton = UIButton()
@@ -232,6 +230,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         deleteButton.frame.size = CGSize(width: 100, height: 100)
         deleteButton.center = CGPoint(x: 271, y: 93)
         deleteButton.titleLabel!.font = UIFont(name: "HirakakuProN-W6", size: 20)
+        deleteButton.addTarget(self, action: "tappedDeleteButton:", forControlEvents: .TouchUpInside)
         backgroundView.addSubview(deleteButton)
         
         let imageView = UIImageView()
@@ -249,6 +248,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         backgroundView.removeFromSuperview()
     }
     
+    func tappedEditButton(sender: UIButton) {
+        backgroundView.removeFromSuperview()
+    }
+    
+    func tappedDeleteButton(sender: UIButton) {
+        backgroundView.removeFromSuperview()
+    }
+    
+    func tappedBagImage(sender: UIImageView) {
+        self.performSegueWithIdentifier("bagSegue", sender: self)
+    }
+    
     //cellView(各アイテムページの背景)
     func makeCellView() -> UIView {
         let cellView = UIView()
@@ -263,11 +274,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func makeItemLabel() -> UILabel{
         let itemLabel = UILabel()
         itemLabel.textColor = UIColor(red: 237/255, green: 81/255, blue: 19/255, alpha: 0.5)
-        itemLabel.frame.size = CGSize(width: 200, height: 200)
+        itemLabel.frame.size = CGSize(width: 230, height: 15)
         itemLabel.center.x = self.view.center.x
         itemLabel.center.y = 340
         itemLabel.text = "アイテム名"
-        itemLabel.font = UIFont(name: "HirakakuProN-W6", size: 13)
+        itemLabel.font = UIFont(name: "HirakakuProN-W6", size: 15)
         itemLabel.numberOfLines = 0
         return itemLabel
     }
@@ -275,10 +286,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func makeItemName(item: Item) -> UILabel{
         let itemName = UILabel()
         itemName.text = item.title
-        itemName.frame.size = CGSize(width: 200, height: 200)
+        itemName.frame.size = CGSize(width: 230, height: 40)
         itemName.textColor = UIColor.blackColor()
         itemName.center.x = self.view.center.x
-        itemName.center.y = 360
+        itemName.center.y = 370
         itemName.font = UIFont(name: "HirakakuProN-W6", size: 15)
         itemName.numberOfLines = 0
         return itemName
@@ -288,11 +299,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func makeStoreLabel() -> UILabel {
         let storeLabel = UILabel()
         storeLabel.textColor = UIColor(red: 237/255, green: 81/255, blue: 19/255, alpha: 0.5)
-        storeLabel.frame.size = CGSize(width: 200, height: 200)
+        storeLabel.frame.size = CGSize(width: 230, height: 15)
         storeLabel.center.x = self.view.center.x
-        storeLabel.center.y = 400
+        storeLabel.center.y = 410
         storeLabel.text = "買ったお店"
-        storeLabel.font = UIFont(name: "HirakakuProN-W6", size: 13)
+        storeLabel.font = UIFont(name: "HirakakuProN-W6", size: 15)
         storeLabel.numberOfLines = 0
         return storeLabel
     }
@@ -302,21 +313,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         storeName.textColor = UIColor.blackColor()
         storeName.text = item.store
         storeName.font = UIFont(name: "HirakakuProN-W6", size: 15)
-        storeName.frame.size = CGSize(width: 200, height: 200)
+        storeName.frame.size = CGSize(width: 230, height: 30)
         storeName.numberOfLines = 0
         storeName.center.x = self.view.center.x
-        storeName.center.y = 420
+        storeName.center.y = 440
         return storeName
     }
     //label（アイテムメモ）
     func makeMemoLabel() -> UILabel {
         let memoLabel = UILabel()
         memoLabel.textColor = UIColor(red: 237/255, green: 81/255, blue: 19/255, alpha: 0.5)
-        memoLabel.frame.size = CGSize(width: 200, height: 200)
+        memoLabel.frame.size = CGSize(width: 230, height: 15)
         memoLabel.center.x = self.view.center.x
-        memoLabel.center.y = 460
+        memoLabel.center.y = 470
         memoLabel.text = "アイテムmemo"
-        memoLabel.font = UIFont(name: "HirakakuProN-W6", size: 13)
+        memoLabel.font = UIFont(name: "HirakakuProN-W6", size: 15)
         memoLabel.numberOfLines = 0
         return memoLabel
     }
@@ -324,9 +335,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func makeMemoName(item: Item) -> UILabel {
         let memoName = UILabel()
         memoName.text = item.descript
-        memoName.frame.size = CGSize(width: 200, height: 200)
+        memoName.frame.size = CGSize(width: 230, height: 200)
         memoName.center.x = self.view.center.x
-        memoName.center.y = 480
+        memoName.center.y = 510
         memoName.textColor = UIColor.blackColor()
         memoName.font = UIFont(name: "HirakakuProN-W6", size: 15)
         memoName.numberOfLines = 0
@@ -358,7 +369,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func unwindToTop(segue: UIStoryboardSegue) {
         
     }
-    
     
 }
 

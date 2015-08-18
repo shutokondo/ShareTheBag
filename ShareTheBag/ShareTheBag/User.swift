@@ -14,5 +14,6 @@ class User: NSObject {
     var password: AnyObject = ""
     var avatar: UIImage!
     var bagImage: UIImage!
+    var bagName: String = ""
     var message: String = ""
 }
