@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [:create, :update]
+  skip_before_filter :verify_authenticity_token, :only => [:create, :update, :follow, :followers]
 
   def index
   end
@@ -35,7 +35,31 @@ class Api::UsersController < ApplicationController
   end
 
   def follow
-    # user = User.find
+    @currentUser = User.find(id_params[:id])
+    @followUser = User.find_by(name: follow_params[:name])
+    @currentUser.follow(@followUser)
+  end
+
+  def get_followers
+    user = User.find_by(auth_token: auth_token_params[:auth_token])
+    users = user.followers
+    @follower = []
+      users.each do |user|
+        id = user.follower_id
+        follower = User.find(id)
+        @follower << follower
+      end
+  end
+
+  def get_follows
+    user = User.find_by(auth_token: auth_token_params[:auth_token])
+    users = user.follows
+    @follow_users = []
+      users.each do |user|
+        id = user.followable_id
+        follow_user = User.find(id)
+        @follow_users << follow_user
+      end
   end
 
   def profile_info
@@ -52,7 +76,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update_params
-    params.permit(:name, :message, :avatar, :id, :bagImage)
+    params.permit(:name, :message, :avatar, :id, :bagImage, :bagName)
   end
 
   def auth_token_params
@@ -61,5 +85,9 @@ class Api::UsersController < ApplicationController
 
   def add_bag_image
     params.permit(:bagImage)
+  end
+
+  def follow_params
+    params.permit(:name)
   end
 end

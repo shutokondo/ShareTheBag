@@ -14,6 +14,16 @@ class User < ActiveRecord::Base
 
   acts_as_follower
 
+  # def get_follows
+  #   follow_users = []
+  #     @users.each do |user|
+  #       id = user.followable_id
+  #       follow_user = User.find(id)
+  #       follow_users << follow_user
+  #     end
+  #   return follow_users
+  # end
+
   private
     def generate_access_token
       begin

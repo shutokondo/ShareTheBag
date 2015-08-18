@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class FollowerTableViewController: UITableViewController {
+    
+    let currentUser = CurrentUser.sharedInstance
+    var stockFollower = StockFollowers.userInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +22,8 @@ class FollowerTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        fetchFollowers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,13 +36,56 @@ class FollowerTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return stockFollower.userArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> FollowerCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("followerCell", forIndexPath: indexPath) as! FollowerCell
+        let user = stockFollower.userArray[indexPath.row]
+        cell.avatar.image = user.avatar
+        cell.name.text = user.name
+        cell.avatar.layer.cornerRadius = 28
+        cell.avatar.layer.masksToBounds = true
+        
+        return cell
+    }
+    
+    func fetchFollowers() {
+        
+        var params: [String: AnyObject] = [
+            "auth_token": currentUser.authToken!,
+        ]
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/users/get_followers", parameters: params, encoding: .URL).responseJSON{ (request, response, JSON, error) in
+            println("=======followersJSON=========")
+            println(JSON)
+            
+            StockFollowers.userInstance.userArray = []
+            
+            if error == nil {
+            var users = JSON!["users"] as! Array<AnyObject>
+                for user in users {
+                let follower = User()
+                    follower.name = user["name"] as! String!
+                    let urlKey = user["avatar"] as! Dictionary<String, AnyObject>
+                    let urlKey2 = urlKey["avatar"] as! Dictionary<String, AnyObject>
+                    if let imageURL = urlKey2["url"] as? String {
+                        let image = UIImage.convertToUIImageFromImagePass(imageURL)
+                        follower.avatar = image
+                    }
+                StockFollowers.userInstance.addUser(follower)
+                    println("StockFollowers呼ばれたよ")
+                    println(StockFollowers.userInstance.userArray)
+                }
+            }
+            
+        }
     }
 
     /*
