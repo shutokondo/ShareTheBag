@@ -137,7 +137,8 @@ class AdditionalViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     
     //タップした時に閉じる処理
-    func tapGesture(sender: UITapGestureRecognizer) {
+    func tapGesture(sender:
+        UITapGestureRecognizer) {
         itemName.resignFirstResponder()
         itemStore.resignFirstResponder()
         itemMemo.resignFirstResponder()

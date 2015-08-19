@@ -20,6 +20,10 @@ class BagViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let button = UIButton()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Plain, target: self, action: "tappedBackButton")
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.blackColor()
+        
         bagName.numberOfLines = 0
         bagName.sizeToFit()
         message.numberOfLines = 0
@@ -32,6 +36,10 @@ class BagViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tappedBackButton() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func getBagInfo() {
