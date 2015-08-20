@@ -338,7 +338,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTp-7q-gOC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FC38445B-E924-4364-B393-2123B2A880BA" translatesAutoresizingMaskIntoConstraints="NO" id="4bn-e1-IqN">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4F0FCC2F-E684-432A-B3D7-CC1477AEC94D" translatesAutoresizingMaskIntoConstraints="NO" id="4bn-e1-IqN">
                                         <rect key="frame" x="112" y="91" width="150" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="AKg-JE-0jM"/>
@@ -534,20 +534,21 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-X6-uCE">
-                                                    <rect key="frame" x="284" y="16" width="83" height="30"/>
-                                                    <color key="backgroundColor" red="0.85250946969696972" green="0.54027331411859814" blue="0.016981198969918565" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="フォロー">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ShutoKondo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVm-hq-VpB">
                                                     <rect key="frame" x="92" y="20" width="171" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-X6-uCE">
+                                                    <rect key="frame" x="284" y="15" width="83" height="29.5"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                                                    <state key="normal" title="フォロー">
+                                                        <color key="titleColor" red="0.85098039215686272" green="0.54117647058823526" blue="0.015686274509803921" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -892,7 +893,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FC38445B-E924-4364-B393-2123B2A880BA" width="790" height="730">
+        <image name="4F0FCC2F-E684-432A-B3D7-CC1477AEC94D" width="790" height="730">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -12,4 +12,6 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var avatar: UIImageView!
+    
+    var followState: Int!
 }

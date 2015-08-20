@@ -1,0 +1,1 @@
+json.follow @follow.follower_type

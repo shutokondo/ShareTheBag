@@ -48,16 +48,31 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         cell.avatar.image = user.avatar
         cell.avatar.layer.cornerRadius = 27
         cell.avatar.layer.masksToBounds = true
+        cell.followButton.layer.borderWidth = 1
+        cell.followButton.layer.borderColor = UIColor(red: 217/255.0, green: 138/255.0, blue: 4/255.0, alpha: 0.4).CGColor
+        cell.followButton.layer.cornerRadius = 5
      
         cell.followButton.tag = indexPath.row
         
        
         cell.followButton.addTarget(self, action: "tapFollowButton:", forControlEvents: UIControlEvents.TouchUpInside)
+//        cell.followButton.addTarget(self, action: "tapButton:", forControlEvents: UIControlEvents.TouchUpInside)
         return cell
     }
 
     func tapGesture(sender: UITapGestureRecognizer) {
         searchBar.resignFirstResponder()
+    }
+    
+//    func tapButton(sender: UIButton) {
+//        sender.setTitle("フォロー解除", forState: UIControlState.Normal)
+//        sender.backgroundColor = UIColor.blackColor()
+//        sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//        sender.titleLabel?.font = UIFont(name: "HirakakuProN-W6", size: 13)
+//    }
+    
+    func tapResetFollowButton(sender: UIButton) {
+        
     }
     
     //フォローボタン押した時の処理
@@ -68,7 +83,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
         var params: [String: AnyObject] = [
             "id": currentUser.id,
-            "name": user.name
+            "name": user.name,
+            "followState": user.followState
             ]
         
         Alamofire.request(.POST, "http://localhost:3000/api/users/follow", parameters: params, encoding: .URL).responseJSON { (request, response, JSON, error) in
@@ -76,6 +92,28 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             println(JSON)
             println("=========ERROR================")
             println(error)
+//            println(JSON!["follow"])
+            
+            var follow_type = JSON?["follow"]
+            
+            if (follow_type != nil) {
+                sender.setTitle("フォロー解除", forState: UIControlState.Normal)
+                sender.backgroundColor = UIColor(red: 217/255.0, green: 138/255.0, blue: 4/255.0, alpha: 0.4)
+                sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                sender.titleLabel?.font = UIFont(name: "HirakakuProN-W6", size: 13)
+                sender.layer.borderColor = UIColor.whiteColor().CGColor
+                sender.layer.cornerRadius = 5
+            } else {
+                sender.setTitle("フォロー", forState: UIControlState.Normal)
+                sender.backgroundColor = UIColor.whiteColor()
+                sender.setTitleColor(UIColor(red: 217/255.0, green: 138/255.0, blue: 4/255.0, alpha: 0.4)
+                    , forState: UIControlState.Normal)
+                sender.titleLabel?.font = UIFont(name: "HirakakuProN-W6", size: 15)
+                sender.layer.borderColor = UIColor(red: 217/255.0, green: 138/255.0, blue: 4/255.0, alpha: 0.4).CGColor
+                sender.layer.borderWidth = 1
+                sender.layer.cornerRadius = 5
+
+            }
         }
     }
     

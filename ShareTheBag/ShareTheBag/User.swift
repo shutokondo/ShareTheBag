@@ -16,4 +16,5 @@ class User: NSObject {
     var bagImage: UIImage!
     var bagName: String = ""
     var message: String = ""
+    var followState: Int = 0
 }

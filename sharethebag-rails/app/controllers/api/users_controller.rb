@@ -35,9 +35,14 @@ class Api::UsersController < ApplicationController
   end
 
   def follow
-    @currentUser = User.find(id_params[:id])
-    @followUser = User.find_by(name: follow_params[:name])
-    @currentUser.follow(@followUser)
+    currentUser = User.find(id_params[:id])
+    followUser = User.find_by(name: follow_params[:name])
+    if currentUser.following?(followUser)
+      currentUser.stop_following(followUser)
+    else
+      currentUser.follow(followUser)
+    end
+    @follow = Follow.find_by(followable_id: followUser.id, follower_id: currentUser.id)
   end
 
   def get_followers
